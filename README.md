@@ -4,7 +4,7 @@ You can find a full writeup of this project at [Mostly Python](https://www.mostl
 
 Running Junco:
 
-```txt
+```sh
 $ git clone https://github.com/ehmatthes/junco.git
 $ cd junco
 junco$ uv run junco --project-dir <path/to/project>
