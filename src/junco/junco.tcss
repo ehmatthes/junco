@@ -1,0 +1,5 @@
+.columns > Static {
+    height: 1fr;
+    width: 1fr;
+    border: round $primary;
+}

@@ -2,11 +2,13 @@ import argparse
 from pathlib import Path
 
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer
+from textual.widgets import Header, Footer, Static
+from textual.containers import Horizontal
 
 class JuncoApp(App):
     """A Textual app that serves as a simple harness for AI models."""
 
+    CSS_PATH = "junco.tcss"
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
     def __init__(self, project_dir=None):
@@ -22,6 +24,11 @@ class JuncoApp(App):
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Header()
+
+        with Horizontal(classes="columns"):
+            yield Static("Info")
+            yield Static("Running conversation")
+
         yield Footer()
 
     def action_toggle_dark(self) -> None:
