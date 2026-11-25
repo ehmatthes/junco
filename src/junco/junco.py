@@ -3,7 +3,7 @@ from pathlib import Path
 
 from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, Static
-from textual.containers import Horizontal
+from textual.containers import Horizontal, Vertical
 
 class JuncoApp(App):
     """A Textual app that serves as a simple harness for AI models."""
@@ -24,11 +24,17 @@ class JuncoApp(App):
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Header()
-
+        
         with Horizontal(classes="columns"):
-            yield Static("Info")
-            yield Static("Running conversation")
+            # Left column.
+            with Vertical(classes="rows"):
+                yield Static("My messages")
+                yield Static("Tool calls")
+                yield Static("Alerts")
 
+            # Right column.
+            yield Static("Running conversation")
+            
         yield Footer()
 
     def action_toggle_dark(self) -> None:
