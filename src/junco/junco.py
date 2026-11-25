@@ -8,6 +8,9 @@ class JuncoApp(App):
         """Create child widgets for the app."""
         yield Header()
 
-if __name__ == "__main__":
+def main():
     app = JuncoApp()
     app.run()
+
+if __name__ == "__main__":
+    main()
