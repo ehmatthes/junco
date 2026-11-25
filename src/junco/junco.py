@@ -28,12 +28,22 @@ class JuncoApp(App):
         with Horizontal(classes="columns"):
             # Left column.
             with Vertical(classes="rows"):
-                yield Static("My messages")
-                yield Static("Tool calls")
-                yield Static("Alerts")
+                self.prompt_box = Static()
+                self.prompt_box.border_title = "My messages"
+                yield self.prompt_box
+
+                self.tool_call_box = Static()
+                self.tool_call_box.border_title = "Tool calls"
+                yield self.tool_call_box
+
+                self.alert_box = Static()
+                self.alert_box.border_title = "Alerts"
+                yield self.alert_box
 
             # Right column.
-            yield Static("Running conversation")
+            self.running_conv_box = Static()
+            self.running_conv_box.border_title = "Running conversation"
+            yield self.running_conv_box
             
         yield Footer()
 
@@ -55,7 +65,9 @@ def main():
 
     # Make sure we're given a directory.
     project_dir = Path(args.project_dir)
-    assert project_dir.is_dir()
+    if not project_dir.is_dir():
+        msg = f"{project_dir.resolve()} is not a valid directory."
+        parser.error(msg)
 
     # Pass the project directory to the app.
     app = JuncoApp(project_dir)
