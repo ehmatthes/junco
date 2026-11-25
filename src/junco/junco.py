@@ -15,7 +15,7 @@ class JuncoApp(App):
         """Initialize startup attributes."""
         super().__init__()
         self.project_dir = project_dir
-        self.title = f"Junco - {self.project_dir.resolve()}"
+        self.title = f"Junco - {self.project_dir}"
 
     def on_mount(self) -> None:
         """Start junco in light mode."""
@@ -64,9 +64,9 @@ def main():
     args = parser.parse_args()
 
     # Make sure we're given a directory.
-    project_dir = Path(args.project_dir)
+    project_dir = Path(args.project_dir).expanduser().resolve()
     if not project_dir.is_dir():
-        msg = f"{project_dir.resolve()} is not a valid directory."
+        msg = f"{project_dir} is not a valid directory."
         parser.error(msg)
 
     # Pass the project directory to the app.
