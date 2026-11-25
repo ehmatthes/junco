@@ -6,6 +6,10 @@ class JuncoApp(App):
 
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
+    def on_mount(self) -> None:
+        """Start junco in light mode."""
+        self.theme = "textual-light"
+
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Header()
