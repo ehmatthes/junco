@@ -11,7 +11,7 @@ class JuncoApp(App):
     CSS_PATH = "junco.tcss"
     BINDINGS = [("d", "toggle_dark", "Toggle dark mode")]
 
-    def __init__(self, project_dir=None):
+    def __init__(self, project_dir):
         """Initialize startup attributes."""
         super().__init__()
         self.project_dir = project_dir
